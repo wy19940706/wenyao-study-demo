@@ -31,11 +31,11 @@ public class LeetCode86 {
         ListNode cur = head;
         ListNode insertPos = null;
         while (cur != null) {
-//            定位需要插入的位置
+            // 定位需要插入的位置
             if (cur.value >= target && insertPos == null) {
                 insertPos = pre;
             }
-//            插入操作
+            // 插入操作
             if (cur.value < target && insertPos != null) {
                 pre.next = pre.next.next;
                 cur.next = insertPos.next;

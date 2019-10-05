@@ -1,9 +1,25 @@
 package com.wenyao.wenyaostudydemo;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
+
+import javax.validation.constraints.NotNull;
+
+import cn.hutool.core.util.ObjectUtil;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.testng.collections.Maps;
+
+import com.google.common.collect.Lists;
+
 import cn.hutool.core.lang.Console;
 import cn.hutool.json.JSONUtil;
-import com.google.common.collect.Lists;
-import com.sun.istack.internal.NotNull;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
@@ -18,18 +34,6 @@ import io.reactivex.subscribers.DisposableSubscriber;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.testng.collections.Maps;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Stream;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -38,7 +42,7 @@ public class RxJavaDemoTest {
     @Test
     public void flatMap() {
         String[] strings = {"Hello", "World"};
-        Stream.of(strings).map(e -> e.split("")).flatMap(Arrays::stream).distinct().forEach(System.out::print);
+        Stream.of(strings).map(e -> e.split("")).flatMap(Arrays::stream).forEach(e -> System.out.print(e + " "));
     }
 
     @Test
@@ -54,7 +58,7 @@ public class RxJavaDemoTest {
         List<Account> accounts = Lists.newArrayList(new Account(1L, 3), new Account(1L, -5), new Account(1L, 44),
                 new Account(2L, -5), new Account(2L, 88), new Account(2L, -9));
         Map<Long, Integer> hashMap = Maps.newHashMap();
-        accounts.forEach(e -> hashMap.merge(e.getAccountId(), e.getAmount(), (k, v) -> k + v));
+        accounts.forEach(e -> hashMap.merge(e.getAccountId(), e.getAmount(), Integer::sum));
         cn.hutool.core.lang.Console.log(JSONUtil.toJsonStr(hashMap));
         List<String> list = Lists.newArrayList("hello", "world", "hello", "haixue", "alibaba", "ant", "haixue");
         Map<String, Integer> map = Maps.newHashMap();
@@ -73,8 +77,18 @@ public class RxJavaDemoTest {
         Console.log(map);
         map.clear();
         // v3
-        list.forEach(e -> map.merge(e, 1, (oldValue, value) -> oldValue + value));
+        list.forEach(e -> map.merge(e, 1, Integer::sum));
         Console.log(map);
+    }
+
+    @Test
+    public void testMapCompute() {
+        // map compute
+        Map<Integer, Integer> computeMap = Maps.newHashMap();
+        for (int i = 0; i < 3; i++) {
+            computeMap.compute(1, (v1, v2) -> ObjectUtil.isNull(v2) ? 1 : v1 + v2);
+            Console.log(computeMap);
+        }
     }
 
     @Test
@@ -84,8 +98,9 @@ public class RxJavaDemoTest {
 
     @Test
     public void test1() throws InterruptedException {
-        Disposable disposable = Flowable.just("Hello world!").delay(1, TimeUnit.SECONDS).subscribeWith(
-                new DisposableSubscriber<String>() {
+        Disposable disposable = Flowable.just("Hello world!")
+                .delay(1, TimeUnit.SECONDS)
+                .subscribeWith(new DisposableSubscriber<String>() {
                     @Override
                     public void onStart() {
                         System.out.println("Start!");
@@ -138,15 +153,19 @@ public class RxJavaDemoTest {
         Flowable.fromCallable(() -> {
             Thread.sleep(1000);
             return "Done";
-        }).subscribeOn(Schedulers.io()).observeOn(Schedulers.single()).subscribe(System.out::println,
-                Throwable::printStackTrace);
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.single())
+                .subscribe(System.out::println, Throwable::printStackTrace);
         Thread.sleep(2000);
     }
 
     @Test
     public void test5() {
-        Flowable.range(1, 10).observeOn(Schedulers.computation()).map(v -> v * v).blockingSubscribe(
-                System.out::println);
+        Flowable.range(1, 10)
+                .observeOn(Schedulers.computation())
+                .map(v -> v * v)
+                .blockingSubscribe(System.out::println);
     }
 
     @Test
@@ -286,8 +305,9 @@ public class RxJavaDemoTest {
 
     @Test
     public void onNext() {
-        Observable.just(1, 2, 3, 4, 5).doOnNext(e -> System.out.println("保存： " + e)).subscribe(
-                e -> System.out.println("消费： " + e));
+        Observable.just(1, 2, 3, 4, 5)
+                .doOnNext(e -> System.out.println("保存： " + e))
+                .subscribe(e -> System.out.println("消费： " + e));
     }
 
     @Test
@@ -341,8 +361,9 @@ public class RxJavaDemoTest {
     @Test
     public void timer() {
         System.out.println("开始时间：" + System.currentTimeMillis());
-        Observable.timer(2, TimeUnit.SECONDS).subscribeOn(Schedulers.io()).subscribe(
-                e -> System.out.println("结束时间：" + System.currentTimeMillis()));
+        Observable.timer(2, TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.io())
+                .subscribe(e -> System.out.println("结束时间：" + System.currentTimeMillis()));
     }
 
     @Test
@@ -388,8 +409,9 @@ public class RxJavaDemoTest {
 
     @Test
     public void reduce() {
-        Observable.just(1, 2, 3).reduce((integer, integer2) -> integer + integer2).subscribe(
-                e -> System.out.println(e));
+        Observable.just(1, 2, 3)
+                .reduce((integer, integer2) -> integer + integer2)
+                .subscribe(e -> System.out.println(e));
     }
 
     @Test

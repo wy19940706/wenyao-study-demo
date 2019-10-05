@@ -1,13 +1,13 @@
 package com.wenyao.studydemo.producerandconsumer;
 
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
-
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 public class WaitNotifyTest {
 

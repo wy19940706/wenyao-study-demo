@@ -42,9 +42,4 @@ public class StreamTestDemo {
 
     }
 
-    public static <T, R> List<T> comsume(List<T> data, Supplier<R> supplier) {
-        return null;
-    }
-
-
 }

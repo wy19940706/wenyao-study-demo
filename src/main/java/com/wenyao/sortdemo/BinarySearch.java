@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class BinarySearch {
     public static void main(String[] args) {
-        int[] array = new int[]{3, 4, 6, 5, 2, 1, 8, 9};
+        int[] array = new int[] {3, 4, 6, 5, 2, 1, 8, 9};
         Arrays.sort(array);
         System.out.println(binarySearch(array, 5));
     }
@@ -17,8 +17,9 @@ public class BinarySearch {
     private static int binarySearch(int[] array, int target) {
         int low = 0;
         int high = array.length - 1;
-        while (low <= high) {
-            int mid = (low + high) / 2;
+        while (low + 1 < high) {
+            // 用减法而不用加法防止数组越界
+            int mid = low + (high - low) / 2;
             if (array[mid] > target) {
                 high = mid - 1;
             } else if (array[mid] < target) {

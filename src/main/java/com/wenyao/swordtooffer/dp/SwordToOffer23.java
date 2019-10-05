@@ -7,7 +7,7 @@ package com.wenyao.swordtooffer.dp;
  */
 public class SwordToOffer23 {
     public static void main(String[] args) {
-        System.out.println(jumpToFloor(4));
+        System.out.println(jumpToFloorByRecursion(4));
     }
 
     private static int jumpToFloor(int n) {
@@ -22,5 +22,18 @@ public class SwordToOffer23 {
             pre2 = result;
         }
         return result;
+    }
+
+    /**
+     * 递归方式跳台阶
+     * 
+     * @param n
+     * @return
+     */
+    private static int jumpToFloorByRecursion(int n) {
+        if (n <= 2) {
+            return n;
+        }
+        return jumpToFloorByRecursion(n - 1) + jumpToFloorByRecursion(n - 2);
     }
 }

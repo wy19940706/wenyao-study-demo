@@ -16,8 +16,8 @@ public class SolutionOne implements Runnable {
      */
     public static void main(String[] args) {
         Thread threadA = new Thread(new SolutionOne(), "偶数线程");
-        Thread threadB = new Thread(new SolutionOne(), "奇数线程");
         threadA.start();
+        Thread threadB = new Thread(new SolutionOne(), "奇数线程");
         threadB.start();
         Console.log("这是主线程");
         System.exit(0);

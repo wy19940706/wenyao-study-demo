@@ -1,7 +1,9 @@
 package com.wenyao.wenyaostudydemo;
 
 import com.deepoove.swagger.dubbo.annotations.EnableDubboSwagger;
+import com.wenyao.aopdemo.Test;
 import com.wenyao.concurrentdemo.concurrentsimulate.HelloService;
+import com.wenyao.studydemo.annotation.TestService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +18,8 @@ public class WenyaoStudyDemoApplication implements CommandLineRunner {
 
     @Resource
     private HelloService helloService;
+    @Resource
+    private TestService testService;
 
     public static void main(String[] args) {
         SpringApplication.run(WenyaoStudyDemoApplication.class, args);
@@ -24,5 +28,6 @@ public class WenyaoStudyDemoApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         helloService.sayHello(4000);
+        testService.test();
     }
 }

@@ -1,7 +1,5 @@
 package com.wenyao.concurrentdemo;
 
-import sun.plugin2.jvm.ProcessLauncher;
-
 /**
  * Created by Think on 2019/5/17
  */

@@ -11,6 +11,9 @@ public class IntegerCache {
         int a1 = 190;
         int b1 = 190;
         System.out.println(a1 == b1);
+        Integer a2 = 2;
+        Integer b2 = 2;
+        System.out.println(a2 == b2);
     }
 
 }
