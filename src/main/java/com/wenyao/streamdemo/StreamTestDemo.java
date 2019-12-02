@@ -1,6 +1,9 @@
 package com.wenyao.streamdemo;
 
+import cn.hutool.json.JSONUtil;
+
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -19,6 +22,7 @@ public class StreamTestDemo {
         String str = "3";
         System.out.println(predicateTest(str, e -> "2".equals(e)));
         System.out.println(supplierTest(() -> str.length()));
+        biConsumerTest(3, 2, (k1, k2) -> System.out.println(k1 + k2));
     }
 
     private static <T, R> R functionTest(T value, Function<T, R> function) {
@@ -39,7 +43,10 @@ public class StreamTestDemo {
 
     public static <T, R> List<R> map(List<T> data, Function<T, R> mapFunction) {
         return data.stream().map(mapFunction).collect(Collectors.toList());
+    }
 
+    public static <T, U> void biConsumerTest(T value, U value2, BiConsumer<T, U> biConsumer) {
+        biConsumer.accept(value, value2);
     }
 
 }

@@ -93,7 +93,7 @@ public class RxJavaDemoTest {
 
     @Test
     public void test0() {
-        Flowable.just(1, 1, 2, 2, 3, 4, 5).subscribe(e -> System.out.println(e));
+        Flowable.just(1, 1, 2, 2, 3, 4, 5).subscribe(System.out::println);
     }
 
     @Test

@@ -16,8 +16,8 @@ public class BinarySearch {
 
     private static int binarySearch(int[] array, int target) {
         int low = 0;
-        int high = array.length - 1;
-        while (low + 1 < high) {
+        int high = array.length;
+        while (low < high) {
             // 用减法而不用加法防止数组越界
             int mid = low + (high - low) / 2;
             if (array[mid] > target) {
