@@ -1,13 +1,13 @@
 package com.wenyao.studydemo.producerandconsumer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ConditionTest {
 
@@ -15,8 +15,8 @@ public class ConditionTest {
     private static Integer count = 0;
     private static final Integer FULL = 10;
     private static final ReentrantLock lock = new ReentrantLock();
-    private static final Condition notFull = lock.newCondition();
-    private static final Condition notEmpty = lock.newCondition();
+    private static final Condition producer = lock.newCondition();
+    private static final Condition consumer = lock.newCondition();
 
     /**
      * 
@@ -26,9 +26,8 @@ public class ConditionTest {
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         for (int i = 0; i < 10; i++) {
-            executorService.execute(new Producer(i));
-            logger.info("开始启动消费者");
-            executorService.execute(new Consumer(i));
+            executorService.execute(new Producer());
+            executorService.execute(new Consumer());
         }
         executorService.shutdown();
         while (!executorService.awaitTermination(10, TimeUnit.SECONDS)) {
@@ -39,12 +38,6 @@ public class ConditionTest {
 
     private static class Producer implements Runnable {
 
-        private Integer index;
-
-        public Producer(Integer index) {
-            this.index = index;
-        }
-
         @Override
         public void run() {
             try {
@@ -54,16 +47,16 @@ public class ConditionTest {
             }
             lock.lock();
             try {
-                while (count == FULL) {
+                while (count.equals(FULL)) {
                     try {
-                        notFull.await();
+                        producer.await();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
                 count++;
                 System.out.println(Thread.currentThread().getName() + "生产者生产,目前产品总计：" + count);
-                notEmpty.signalAll();
+                consumer.signalAll();
             } finally {
                 lock.unlock();
             }
@@ -71,12 +64,6 @@ public class ConditionTest {
     }
 
     private static class Consumer implements Runnable {
-
-        private Integer index;
-
-        public Consumer(Integer index) {
-            this.index = index;
-        }
 
         @Override
         public void run() {
@@ -89,14 +76,14 @@ public class ConditionTest {
             try {
                 while (count == 0) {
                     try {
-                        notEmpty.await();
+                        consumer.await();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
                 count--;
                 System.out.println(Thread.currentThread().getName() + "消费者消费，目前还剩产品" + count);
-                notFull.signalAll();
+                producer.signalAll();
             } finally {
                 lock.unlock();
             }

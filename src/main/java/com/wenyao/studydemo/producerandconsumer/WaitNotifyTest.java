@@ -14,7 +14,7 @@ public class WaitNotifyTest {
     private static ExecutorService executorService;
     private static final Integer minSize = 0;
     private static final Integer maxSize = 10;
-    private static Object lock = new Object();
+    private static final Object lock = new Object();
     private static Integer count = 0;
 
     /**
@@ -73,7 +73,6 @@ public class WaitNotifyTest {
                 count--;
                 System.out.println(Thread.currentThread().getName() + "消费者消费，剩余产品" + count);
                 lock.notify();
-
             }
         }
     }
