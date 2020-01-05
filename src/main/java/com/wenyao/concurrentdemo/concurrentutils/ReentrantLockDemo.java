@@ -2,6 +2,7 @@ package com.wenyao.concurrentdemo.concurrentutils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -10,7 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class ReentrantLockDemo {
 
-    private static Lock lock = new ReentrantLock();
+    private static Lock lock = new ReentrantLock(true);
     private static ExecutorService executorService = Executors.newFixedThreadPool(10);
 
     public static void main(String[] args) {
@@ -27,6 +28,11 @@ public class ReentrantLockDemo {
         public void run() {
             lock.lock();
             System.out.println("线程" + Thread.currentThread().getName() + "拿到锁了");
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             lock.unlock();
         }
     }

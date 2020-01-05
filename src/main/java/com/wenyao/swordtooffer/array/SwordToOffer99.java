@@ -9,8 +9,8 @@ import com.alibaba.fastjson.JSON;
  */
 public class SwordToOffer99 {
     public static void main(String[] args) {
-        int[] a = new int[]{1, 2, 3, 4};
-        int[] b = new int[]{3, 4, 5};
+        int[] a = new int[] {1, 2, 3, 4};
+        int[] b = new int[] {3, 4, 5};
         int[] c = mergeArray(a, b);
         int zeroCount = 0;
         for (int i = 0; i < c.length; i++) {

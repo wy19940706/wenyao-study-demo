@@ -23,7 +23,7 @@ public class ReentrantCycleLock {
             return;
         }
         for (; ; ) {
-            while (!owner.compareAndSet(null, current)) {
+            if (owner.compareAndSet(null, current)) {
                 return;
             }
         }

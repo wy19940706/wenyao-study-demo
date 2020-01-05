@@ -27,9 +27,7 @@ public class CyclicBarrierDemo implements Runnable {
                 concurrentHashMap.put(Thread.currentThread().getName(), 1);
                 try {
                     cyclicBarrier.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (BrokenBarrierException e) {
+                } catch (InterruptedException | BrokenBarrierException e) {
                     e.printStackTrace();
                 }
             });

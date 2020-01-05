@@ -4,6 +4,7 @@ import java.util.AbstractSet;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -122,7 +123,6 @@ public class CustomerThreadPool {
         if (!offer) {
             if (workerSet.size() < maxSize) {
                 addWorker(runnable);
-                return;
             } else {
                 LOGGER.error("超过最大线程数");
                 try {
@@ -147,17 +147,17 @@ public class CustomerThreadPool {
         private Thread thread;
         private boolean isNewTask;
 
-        public Worker(Runnable task, boolean isNewTask) {
+        Worker(Runnable task, boolean isNewTask) {
             this.task = task;
             this.isNewTask = isNewTask;
             thread = this;
         }
 
-        public void startTask() {
+        void startTask() {
             thread.start();
         }
 
-        public void close() {
+        void close() {
             thread.interrupt();
         }
 
@@ -275,4 +275,5 @@ public class CustomerThreadPool {
             return map.remove(o) == present;
         }
     }
+
 }
