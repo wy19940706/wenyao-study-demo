@@ -1,9 +1,12 @@
 package com.wenyao.mybatismapper;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+@Slf4j
 public class MapperProxy implements InvocationHandler {
 
     public <T> T newInstance(Class<T> clazz) {
@@ -17,6 +20,7 @@ public class MapperProxy implements InvocationHandler {
             try {
                 method.invoke(this, args);
             } catch (Throwable throwable) {
+                log.error(String.valueOf(throwable.getCause()),throwable);
             }
 
         }

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * 电话收费计划抽象类
  */
-abstract public class AbstractPhoneChargePlan implements ChargePlan {
+public abstract class AbstractPhoneChargePlan implements ChargePlan {
 
     @Override
     public BigDecimal charge() {
@@ -13,6 +13,6 @@ abstract public class AbstractPhoneChargePlan implements ChargePlan {
         return specificCharge();
     }
 
-    abstract protected BigDecimal specificCharge();
+    protected abstract BigDecimal specificCharge();
 
 }
