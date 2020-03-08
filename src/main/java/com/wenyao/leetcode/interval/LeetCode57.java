@@ -31,14 +31,18 @@ public class LeetCode57 {
             return Lists.newArrayList();
         }
         List<Interval> result = Lists.newArrayList();
+        // 分三种情况讨论
         for (Interval item : intervals) {
+            // 新区间在右边，则直接先把item区间加入结果集
             if (newInterval == null || item.end < newInterval.start) {
                 result.add(item);
+                // 新区间在左边，把新区间和item都加入结果集，并把新区间置为null
             } else if (item.start > newInterval.end) {
                 result.add(newInterval);
                 result.add(item);
                 newInterval = null;
             } else {
+                // 否则则把新区间改为一个综合值
                 newInterval.start = Math.min(item.start, newInterval.start);
                 newInterval.end = Math.max(item.end, newInterval.end);
             }

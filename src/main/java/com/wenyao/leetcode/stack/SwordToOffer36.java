@@ -9,11 +9,9 @@ import java.util.Stack;
  */
 public class SwordToOffer36 {
     public static void main(String[] args) {
-        int[] pushSeq = new int[]{1, 2, 3, 4, 5};
-        int[] popSeq = new int[]{4, 5, 3, 2, 1};
-        int[] array = new int[]{4, 3, 5, 1, 2};
+        int[] pushSeq = new int[] {1, 2, 3, 4, 5};
+        int[] popSeq = new int[] {4, 5, 3, 2, 1};
         System.out.println(isPopOrder(pushSeq, popSeq));
-        System.out.println(isPopOrder(pushSeq, array));
     }
 
     private static boolean isPopOrder(int[] pushSeq, int[] popSeq) {

@@ -19,6 +19,7 @@ public class JdkDynamicAop implements InvocationHandler {
 
     @Override
     public Object invoke(Object object, Method method, Object[] args) throws Throwable {
+        System.out.println("这是jdk动态代理");
         return method.invoke(target, args);
     }
 }

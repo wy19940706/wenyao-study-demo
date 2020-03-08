@@ -3,7 +3,7 @@ package com.wenyao.leetcode.list;
 import com.wenyao.leetcode.ListNode;
 
 /**
- * @Description: 在 O(n log n) 时间复杂度和常数级空间复杂度下，对链表进行排序(归并排序)
+ * @Description: 在 O(nlogn) 时间复杂度和常数级空间复杂度下，对链表进行排序(归并排序)
  * @Author: wy
  * @CreateDate: 2019/4/16 0:22
  */

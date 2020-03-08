@@ -1,10 +1,8 @@
 package com.wenyao.leetcode.array;
 
-import java.util.List;
 import java.util.PriorityQueue;
 
 import com.alibaba.fastjson.JSON;
-import com.google.common.collect.Lists;
 
 /**
  * @Description: 最小的k个数
@@ -17,9 +15,9 @@ public class SwordToOffer44 {
         System.out.println(JSON.toJSONString(getLeastNumsOfK(array, 4)));
     }
 
-    private static List<Integer> getLeastNumsOfK(int[] nums, int k) {
+    private static int[] getLeastNumsOfK(int[] nums, int k) {
         if (k <= 0 || k > nums.length) {
-            return Lists.newArrayList();
+            return new int[0];
         }
         // 优先级队列
         PriorityQueue<Integer> queue = new PriorityQueue<>((o1, o2) -> o2 - o1);
@@ -29,7 +27,12 @@ public class SwordToOffer44 {
                 queue.poll();
             }
         }
-        return Lists.newArrayList(queue);
+        int[] result = new int[k];
+        int count = 0;
+        while (!queue.isEmpty()) {
+            result[count++] = queue.poll();
+        }
+        return result;
     }
 
 }

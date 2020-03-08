@@ -13,34 +13,12 @@ public class LeetCode203 {
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
         head.next.next = new ListNode(3);
-        ListNode result = removeOfTarget(head, 1);
         ListNode result2 = removeElements(head, 1);
-        System.out.println(JSON.toJSONString(result));
         System.out.println(JSON.toJSONString(result2));
     }
 
-    private static ListNode removeOfTarget(ListNode head, int target) {
-        if (head == null) {
-            return null;
-        }
-        while (head != null && head.value == target) {
-            head = head.next;
-        }
-        if (head == null) {
-            return null;
-        }
-        ListNode cur = head;
-        while (cur.next != null) {
-            if (cur.next.value == target) {
-                cur.next = cur.next.next;
-            } else {
-                cur = cur.next;
-            }
-        }
-        return head;
-    }
-
     public static ListNode removeElements(ListNode head, int val) {
+        // 用哑节点可以不用考虑头结点的特殊情况
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode pre = dummy;

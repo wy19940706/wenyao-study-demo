@@ -14,11 +14,11 @@ public class SwordToOffer1 {
     private static boolean search(int[][] array, int target) {
         int row = array.length - 1;
         int column = 0;
-        while ((row >= 0) && column < array[0].length) {
-            if (array[row][column] < target) {
-                column++;
-            } else if (array[row][column] > target) {
+        while (row >= 0 && (column < array[0].length)) {
+            if (array[row][column] > target) {
                 row--;
+            } else if (array[row][column] < target) {
+                column++;
             } else {
                 return true;
             }

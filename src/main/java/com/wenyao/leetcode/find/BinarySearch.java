@@ -1,4 +1,4 @@
-package com.wenyao.leetcode.sort;
+package com.wenyao.leetcode.find;
 
 import java.util.Arrays;
 

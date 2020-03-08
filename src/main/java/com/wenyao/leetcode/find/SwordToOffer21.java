@@ -7,7 +7,7 @@ package com.wenyao.leetcode.find;
  */
 public class SwordToOffer21 {
     public static void main(String[] args) {
-        int[] array = new int[]{3, 4, 5, 1, 2};
+        int[] array = new int[] {3, 4, 5, 1, 2};
         System.out.println(minNumInRotateArray(array));
     }
 
@@ -16,7 +16,7 @@ public class SwordToOffer21 {
             return 0;
         }
         int low = 0, high = array.length - 1;
-        while (low < high) {
+        while (low <= high) {
             int mid = (low + high) / 2;
             if (array[mid] == array[low] && array[high] == array[mid]) {
                 return minNumber(array, low, high);
@@ -37,4 +37,22 @@ public class SwordToOffer21 {
         }
         return array[low];
     }
+
+    class Solution {
+        public int minArray(int[] numbers) {
+            int low = 0, high = numbers.length - 1;
+            while (low < high) {
+                int mid = (low + high) / 2;
+                if (numbers[mid] > numbers[high]) {
+                    low = mid + 1;
+                } else if (numbers[mid] < numbers[high]) {
+                    high = mid;
+                } else {
+                    high--;
+                }
+            }
+            return numbers[low];
+        }
+    }
+
 }

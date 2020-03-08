@@ -24,9 +24,10 @@ public class LeetCode78 {
         if (array == null || array.length <= 0) {
             return result;
         }
+        // 先进行排序
         Arrays.sort(array);
         List<Integer> item = Lists.newArrayList();
-        // 从i开始，表示每一次会把有i个元素的集合添加到result中
+        // 从i开始，表示每一次会把有i个元素的集合添加到result中，需要循环递归
         for (int i = 0; i <= array.length; i++) {
             dfs(array, i, 0, item, result);
         }

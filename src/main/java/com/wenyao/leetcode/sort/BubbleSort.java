@@ -1,6 +1,7 @@
 package com.wenyao.leetcode.sort;
 
-import com.alibaba.fastjson.JSON;
+import com.wenyao.leetcode.sort.tools.Integers;
+import com.wenyao.leetcode.sort.tools.Times;
 
 /**
  * @Description: 冒泡排序
@@ -9,26 +10,22 @@ import com.alibaba.fastjson.JSON;
  */
 public class BubbleSort {
     public static void main(String[] args) {
-        int[] array1 = new int[]{3, 2, 1};
-        bubbleSort(array1);
-        System.out.println(JSON.toJSONString(array1));
-        int[] array2 = new int[]{8, 6, 4, 3, 2, 1, 9};
-        bubbleSortTwo(array2);
-        System.out.println(JSON.toJSONString(array2));
-        int[] array3 = new int[]{3, 4, 2, 1, 5, 6, 7, 8};
-        bubbleSortThree(array3);
-        System.out.println(JSON.toJSONString(array3));
+        Integer[] arrayOne = Integers.tailAscOrder(1, 10000, 5);
+        Integer[] arrayTwo = Integers.copy(arrayOne);
+        Integer[] arrayThree = Integers.copy(arrayOne);
+        Times.test("冒泡排序1", () -> bubbleSort(arrayOne));
+        Times.test("冒泡排序2", () -> bubbleSortTwo(arrayTwo));
+        Times.test("冒泡排序3", () -> bubbleSortThree(arrayThree));
     }
 
-    private static void bubbleSort(int[] array) {
+    private static void bubbleSort(Integer[] array) {
         if (array == null || array.length == 0) {
             return;
         }
-        int temp;
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length - i - 1; j++) {
                 if (array[j + 1] < array[j]) {
-                    temp = array[j + 1];
+                    int temp = array[j + 1];
                     array[j + 1] = array[j];
                     array[j] = temp;
                 }
@@ -36,16 +33,31 @@ public class BubbleSort {
         }
     }
 
-    private static void bubbleSortTwo(int[] array) {
+    private static void bubbleSortOther(int[] array) {
         if (array == null || array.length == 0) {
             return;
         }
-        int temp;
+        for (int end = array.length - 1; end > 0; end--) {
+            for (int begin = 1; begin <= end; begin++) {
+                if (array[begin] < array[begin - 1]) {
+                    int tmp = array[begin];
+                    array[begin] = array[begin - 1];
+                    array[begin - 1] = tmp;
+                }
+            }
+        }
+
+    }
+
+    private static void bubbleSortTwo(Integer[] array) {
+        if (array == null || array.length == 0) {
+            return;
+        }
         for (int i = 0; i < array.length; i++) {
             boolean isSorted = true;
-            for (int j = 0; j < array.length - 1 - i; j++) {
+            for (int j = 0; j < array.length - i - 1; j++) {
                 if (array[j + 1] < array[j]) {
-                    temp = array[j + 1];
+                    int temp = array[j + 1];
                     array[j + 1] = array[j];
                     array[j] = temp;
                     isSorted = false;
@@ -57,11 +69,10 @@ public class BubbleSort {
         }
     }
 
-    private static void bubbleSortThree(int[] array) {
+    private static void bubbleSortThree(Integer[] array) {
         if (array == null || array.length == 0) {
             return;
         }
-        int tmp;
         int lastChangeIndex = 0;
         int sortBorder = array.length - 1;
         for (int i = 0; i < array.length; i++) {
@@ -69,7 +80,7 @@ public class BubbleSort {
             for (int j = 0; j < sortBorder; j++) {
                 if (array[j + 1] < array[j]) {
                     isSorted = false;
-                    tmp = array[j + 1];
+                    int tmp = array[j + 1];
                     array[j + 1] = array[j];
                     array[j] = tmp;
                     lastChangeIndex = j;

@@ -9,27 +9,9 @@ import java.util.Arrays;
  */
 public class SelectionSort {
     public static void main(String[] args) {
-        int[] array = new int[]{5, 3, 21, 7, 4};
+        int[] array = new int[] {5, 3, 21, 7, 4};
         System.out.println(Arrays.toString(selectSort(array)));
     }
-
-//    private static int[] selectSort(int[] array) {
-//        if (array.length == 0) {
-//            return array;
-//        }
-//        for (int i = 0; i < array.length; i++) {
-//            int minIndex = i;
-//            for (int j = i; j < array.length; j++) {
-//                if (array[j] < array[minIndex]) {
-//                    minIndex = j;
-//                }
-//            }
-//            int temp = array[minIndex];
-//            array[minIndex] = array[i];
-//            array[i] = temp;
-//        }
-//        return array;
-//    }
 
     private static int[] selectSort(int[] array) {
         if (array == null || array.length == 0) {
@@ -37,11 +19,13 @@ public class SelectionSort {
         }
         for (int i = 0; i < array.length; i++) {
             int minIndex = i;
+            // 每一轮找出最小的那个元素
             for (int j = i; j < array.length; j++) {
                 if (array[j] < array[minIndex]) {
                     minIndex = j;
                 }
             }
+            // 把最小的元素放到最前面去
             int temp = array[minIndex];
             array[minIndex] = array[i];
             array[i] = temp;

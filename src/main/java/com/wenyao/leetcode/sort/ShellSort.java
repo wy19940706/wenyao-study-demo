@@ -9,7 +9,7 @@ import com.alibaba.fastjson.JSON;
  */
 public class ShellSort {
     public static void main(String[] args) {
-        int[] array = new int[]{6, 4, 3, 2, 8, 9, 6, 5, 2};
+        int[] array = new int[] {6, 4, 3, 2, 8, 9, 6, 5, 2};
         System.out.println(JSON.toJSONString(shellSort(array)));
     }
 

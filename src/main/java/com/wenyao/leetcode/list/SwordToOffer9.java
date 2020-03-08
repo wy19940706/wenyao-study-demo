@@ -15,26 +15,8 @@ public class SwordToOffer9 {
         head.next.next = new ListNode(3);
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = head.next;
-        ListNode nodeOfLoop = searchNodeOfLoop(head);
+        ListNode nodeOfLoop = detectCycle(head);
         System.out.println(JSON.toJSONString(nodeOfLoop));
-    }
-
-    private static ListNode searchNodeOfLoop(ListNode head) {
-        if (head == null || head.next == null) {
-            return null;
-        }
-        ListNode slow = head;
-        ListNode fast = head;
-        while (slow != fast) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        fast = head;
-        while (slow != fast) {
-            slow = slow.next;
-            fast = fast.next;
-        }
-        return slow;
     }
 
     public static ListNode detectCycle(ListNode head) {
@@ -43,9 +25,15 @@ public class SwordToOffer9 {
         }
         ListNode slow = head;
         ListNode fast = head;
-        while (slow != fast) {
+        while (true) {
+            if (fast == null || fast.next == null) {
+                return null;
+            }
             slow = slow.next;
             fast = fast.next.next;
+            if (slow == fast) {
+                break;
+            }
         }
         fast = head;
         while (slow != fast) {

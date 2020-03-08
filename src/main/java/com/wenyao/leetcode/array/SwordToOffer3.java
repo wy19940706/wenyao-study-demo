@@ -3,7 +3,7 @@ package com.wenyao.leetcode.array;
 import com.alibaba.fastjson.JSON;
 
 /**
- * @Description: 构建乘积数组
+ * @Description: 构建乘积数组（leetcode面试题66）
  * @Author: wy
  * @CreateDate: 2019/3/22 23:34
  */

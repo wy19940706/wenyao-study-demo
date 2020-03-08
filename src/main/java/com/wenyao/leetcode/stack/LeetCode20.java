@@ -26,23 +26,14 @@ public class LeetCode20 {
         Stack<Character> characterStack = new Stack<>();
         for (int i = 0; i < chars.length; i++) {
             char ch = chars[i];
-            if (ch == '[' || ch == '{' || ch == '(') {
-                characterStack.push(ch);
-            } else {
-                if (characterStack.size() == 0) {
-                    return false;
-                }
-                char lastChar = characterStack.peek();
-                if (ch == ']' && lastChar != '[') {
-                    return false;
-                }
-                if (ch == '}' && lastChar != '{') {
-                    return false;
-                }
-                if (ch == ')' && lastChar != '(') {
-                    return false;
-                }
-                characterStack.pop();
+            if (ch == '[') {
+                characterStack.push(']');
+            } else if (ch == '{') {
+                characterStack.push('}');
+            } else if (ch == '(') {
+                characterStack.push(')');
+            } else if (characterStack.isEmpty() || ch != characterStack.pop()) {
+                return false;
             }
         }
         if (!characterStack.isEmpty()) {
@@ -50,6 +41,5 @@ public class LeetCode20 {
         }
         return true;
     }
-
 
 }

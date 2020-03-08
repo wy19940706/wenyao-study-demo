@@ -11,10 +11,11 @@ import java.util.List;
  */
 public class LeetCode125 {
     public static void main(String[] args) {
-        String stringOne = "A man, a plan, a canal: Panama";
+        String stringOne = "abba";
         String stringTwo = "race a car";
         System.out.println(isPalindromeTwo(stringOne));
-        System.out.println(isPalindromeTwo(stringTwo));
+        System.out.println(isPalindrome(stringOne));
+        System.out.println(isPalindromeThree(stringOne));
     }
 
     private static boolean isPalindrome(String string) {
@@ -33,6 +34,27 @@ public class LeetCode125 {
             if (!list.get(i).equals(list.get(size - 1 - i))) {
                 return false;
             }
+        }
+        return true;
+    }
+
+    private static boolean isPalindromeThree(String string) {
+        int left = 0;
+        int right = string.length() - 1;
+        while (left < right) {
+            if (!isLetterOrNumber(string.charAt(left))) {
+                left++;
+                continue;
+            }
+            if (!isLetterOrNumber(string.charAt(right))) {
+                right++;
+                continue;
+            }
+            if (Character.toLowerCase(string.charAt(left)) != Character.toLowerCase(string.charAt(right))) {
+                return false;
+            }
+            left++;
+            right--;
         }
         return true;
     }

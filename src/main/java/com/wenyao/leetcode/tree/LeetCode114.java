@@ -1,4 +1,4 @@
-package com.wenyao.leetcode.list;
+package com.wenyao.leetcode.tree;
 
 import com.wenyao.leetcode.TreeNode;
 

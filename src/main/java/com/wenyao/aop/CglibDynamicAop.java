@@ -17,6 +17,7 @@ public class CglibDynamicAop implements MethodInterceptor {
 
     @Override
     public Object intercept(Object object, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
+        System.out.println("这是cglib动态代理");
         return methodProxy.invokeSuper(object, args);
     }
 }
