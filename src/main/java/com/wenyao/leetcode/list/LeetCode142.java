@@ -8,7 +8,7 @@ import com.wenyao.leetcode.ListNode;
  * @Author: wy
  * @CreateDate: 2019/4/2 15:39
  */
-public class SwordToOffer9 {
+public class LeetCode142 {
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);

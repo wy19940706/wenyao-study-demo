@@ -19,8 +19,8 @@ public class LeetCode22 {
     }
 
     public static ListNode getKthFromEnd(ListNode head, int k) {
-        ListNode fast = head;
         ListNode slow = head;
+        ListNode fast = head;
         while (fast != null && k > 0) {
             fast = fast.next;
             k--;

@@ -1,7 +1,7 @@
 package com.wenyao.leetcode.array;
 
 /**
- * 搜索旋转排序数组（字节）
+ * 搜索旋转排序数组（字节跳动）
  */
 public class LeetCode33 {
 

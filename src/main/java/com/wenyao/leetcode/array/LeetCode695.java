@@ -4,38 +4,28 @@ package com.wenyao.leetcode.array;
  * 岛屿的最大面积（字节跳动）
  */
 class LeetCode695 {
-    int[][] move = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
 
     public int maxAreaOfIsland(int[][] grid) {
-        int max = 0; // 记录最大岛屿面积
-        boolean[][] visited = new boolean[grid.length][grid[0].length]; // 记录当前坐标是否已被访问
+        int result = 0;
         for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == 1) { //
-                    int count = dfs(grid, visited, i, j, 0);
-                    max = max > count ? max : count;
+            for (int j = 0; j < grid[i].length; j++) {
+                // 登录一个岛屿，向四周扩散
+                if (grid[i][j] == 1) {
+                    result = Math.max(result, dfs(i, j, grid));
                 }
             }
         }
-        return max;
+        return result;
     }
 
-    private int dfs(int[][] grid, boolean[][] visited, int x, int y, int count) {
-        if (!valid(grid, visited, x, y)) {
-            return count;
+    // 每次调用的时候默认num为1，进入后判断如果不是岛屿，则直接返回0，就可以避免预防错误的情况。
+    // 每次找到岛屿，则直接把找到的岛屿改成0，这是传说中的沉岛思想，就是遇到岛屿就把他和周围的全部沉默。
+    // ps：如果能用沉岛思想，那么自然可以用朋友圈思想。有兴趣的朋友可以去尝试。
+    private int dfs(int i, int j, int[][] grid) {
+        if (i < 0 || j < 0 || i >= grid.length || j >= grid[i].length || grid[i][j] == 0) {
+            return 0;
         }
-        visited[x][y] = true;
-        for (int i = 0; i < move.length; i++) { // 上下左右进行遍历
-            count = dfs(grid, visited, x + move[i][0], y + move[i][1], count);
-        }
-        return count + 1; // 更新岛屿面积
-    }
-
-    private boolean valid(int[][] grid, boolean[][] visited, int x, int y) {
-        if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length || visited[x][y] || grid[x][y] != 1) {
-            // 验证合法性，未越界且未被访问值为1
-            return false;
-        }
-        return true;
+        grid[i][j] = 0;
+        return 1 + dfs(i + 1, j, grid) + dfs(i - 1, j, grid) + dfs(i, j + 1, grid) + dfs(i, j - 1, grid);
     }
 }

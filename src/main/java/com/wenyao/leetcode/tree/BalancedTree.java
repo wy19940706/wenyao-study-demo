@@ -3,7 +3,7 @@ package com.wenyao.leetcode.tree;
 import com.wenyao.leetcode.TreeNode;
 
 /**
- * @Description: 平衡二叉树
+ * @Description: 判断平衡二叉树
  * @Author: wy
  * @CreateDate: 2019/3/28 23:09
  */

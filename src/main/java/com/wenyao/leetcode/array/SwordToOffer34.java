@@ -1,9 +1,9 @@
 package com.wenyao.leetcode.array;
 
+import java.util.List;
+
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
-
-import java.util.List;
 
 /**
  * @Description: 顺时针打印矩阵（leetcode 面试题29）
@@ -12,12 +12,20 @@ import java.util.List;
  */
 public class SwordToOffer34 {
     public static void main(String[] args) {
-        int[][] matrix = new int[][]{
-                {1, 2, 3, 4, 5},
-                {6, 7, 8, 9, 10},
-                {11, 12, 13, 14, 15}
-        };
+        int[][] matrix = new int[][] {{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}};
         System.out.println(JSON.toJSONString(printMatrix(matrix)));
+    }
+
+    private static int[] spiralOrder(int[][] matrix) {
+        if (matrix.length == 0 || matrix[0].length == 0) {
+            return new int[0];
+        }
+        List<Integer> list = printMatrix(matrix);
+        int[] result = new int[list.size()];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = list.get(i);
+        }
+        return result;
     }
 
     private static List<Integer> printMatrix(int[][] matrix) {

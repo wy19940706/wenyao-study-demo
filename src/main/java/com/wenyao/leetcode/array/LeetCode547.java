@@ -4,9 +4,6 @@ package com.wenyao.leetcode.array;
  * 朋友圈的实现
  */
 public class LeetCode547 {
-    public static void main(String[] args) {
-
-    }
 
     // 时间复杂度：O(n^2)
     // 空间复杂度：O(n)

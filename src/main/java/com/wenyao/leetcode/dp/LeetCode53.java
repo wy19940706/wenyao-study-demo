@@ -1,4 +1,4 @@
-package com.wenyao.leetcode.greedy;
+package com.wenyao.leetcode.dp;
 
 /**
  * 最大连续子序列和
@@ -9,7 +9,7 @@ public class LeetCode53 {
         System.out.println(maxSubArrayTwo(nums));
     }
 
-    // 时间复杂度：O(n) 空间复杂度：O(1)
+    // 时间复杂度：O(n) 空间复杂度：O(1)-贪心
     public static int maxSubArray(int[] array) {
         if (array == null || array.length == 0) {
             return 0;
@@ -39,7 +39,25 @@ public class LeetCode53 {
             } else {
                 dp[i] = array[i];
             }
-            max = Math.max(max, dp[i]);
+            max = Math.max(dp[i], max);
+        }
+        return max;
+    }
+
+    // 可以优化空间复杂度为O(1) 时间复杂度：O(n)
+    public static int maxSubArrayThree(int[] array) {
+        if (array == null || array.length == 0) {
+            return 0;
+        }
+        int dp = array[0];
+        int max = dp;
+        for (int i = 1; i < array.length; i++) {
+            if (dp > 0) {
+                dp = dp + array[i];
+            } else {
+                dp = array[i];
+            }
+            max = Math.max(dp, max);
         }
         return max;
     }

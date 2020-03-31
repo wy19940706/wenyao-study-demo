@@ -30,7 +30,7 @@ public class QuickSort {
         int tmp = array[start];
         while (start < end) {
             // 从后开始往前扫描
-            if (start < end && tmp <= array[end]) {
+            if (tmp <= array[end]) {
                 end--;
             }
             // end处的值比tmp小了，则把end处的值放到start，此时end处就空了

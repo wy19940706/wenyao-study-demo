@@ -52,4 +52,5 @@ public class LeetCode24 {
         next.next = head;
         return next;
     }
+
 }

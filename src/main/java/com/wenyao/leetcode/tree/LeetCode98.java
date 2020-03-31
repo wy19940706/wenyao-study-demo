@@ -37,17 +37,4 @@ public class LeetCode98 {
         }
     }
 
-    public static boolean isValidBST2(TreeNode root) {
-        if (root == null) {
-            return true;
-        }
-        List<TreeNode> result = Lists.newArrayList();
-        inOrder(root, result);
-        for (int i = 0; i < result.size() - 1; i++) {
-            if (result.get(i).data >= result.get(i + 1).data) {
-                return false;
-            }
-        }
-        return true;
-    }
 }

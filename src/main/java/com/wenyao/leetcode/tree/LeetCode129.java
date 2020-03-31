@@ -3,7 +3,7 @@ package com.wenyao.leetcode.tree;
 import com.wenyao.leetcode.TreeNode;
 
 /**
- * @Description: Sum Root to Leaf Numbers
+ * @Description: 给定一个二叉树，它的每个结点都存放一个 0-9 的数字，每条从根到叶子节点的路径都代表一个数字。 求根到叶子节点数字总和
  * @Author: wy
  * @CreateDate: 2019/3/14 17:25
  */

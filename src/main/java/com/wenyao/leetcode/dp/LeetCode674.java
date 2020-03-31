@@ -1,4 +1,4 @@
-package com.wenyao.leetcode.array;
+package com.wenyao.leetcode.dp;
 
 import java.util.Arrays;
 
