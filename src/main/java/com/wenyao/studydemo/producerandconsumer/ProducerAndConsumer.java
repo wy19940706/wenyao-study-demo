@@ -6,12 +6,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+public class ProducerAndConsumer {
 
-public class ConditionTest {
-
-    private static final Logger logger = LoggerFactory.getLogger(ConditionTest.class);
     private static Integer count = 0;
     private static final Integer FULL = 10;
     private static final ReentrantLock lock = new ReentrantLock();
@@ -40,11 +36,6 @@ public class ConditionTest {
 
         @Override
         public void run() {
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             lock.lock();
             try {
                 while (count.equals(FULL)) {
@@ -67,11 +58,6 @@ public class ConditionTest {
 
         @Override
         public void run() {
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             lock.lock();
             try {
                 while (count == 0) {
