@@ -6,7 +6,9 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
 /**
- * 自定义同步组件（同一时刻最多两个线程获取到锁）
+ * @Description 自定义同步组件（同一时刻最多两个线程获取到锁）
+ * @Author wenyao
+ * @Time 2020/9/10 12:38 上午
  */
 public class TwinsLock implements Lock {
     private final Sync sync = new Sync(2);
