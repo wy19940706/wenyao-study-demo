@@ -21,6 +21,7 @@ public class InOrderOfTree {
         System.out.println(JSON.toJSONString(inorderTraversal(root)));
     }
 
+    // 中序遍历使用栈
     private static List<Integer> inOrderOfTree(TreeNode root) {
         List<Integer> result = Lists.newArrayList();
         Stack<TreeNode> stack = new Stack<>();
@@ -41,6 +42,8 @@ public class InOrderOfTree {
         return result;
     }
 
+
+    // 递归中序遍历
     public static List<Integer> item = Lists.newArrayList();
 
     public static List<Integer> inorderTraversal(TreeNode root) {

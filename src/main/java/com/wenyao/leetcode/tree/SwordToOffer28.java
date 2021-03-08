@@ -7,7 +7,7 @@ import com.wenyao.leetcode.TreeNode;
  * @Author: wy
  * @CreateDate: 2019/3/28 23:21
  */
-public class SymmetricTree {
+public class SwordToOffer28 {
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
@@ -26,11 +26,10 @@ public class SymmetricTree {
         if (left == null && right == null) {
             return true;
         }
-        if (left == null || right == null) {
+        if (left == null || right == null || left.data != right.data) {
             return false;
         }
-        return left.data == right.data && isSym(left.right, right.left) && isSym(left.left, right.right);
+        return isSym(left.right, right.left) && isSym(left.left, right.right);
     }
-
 
 }

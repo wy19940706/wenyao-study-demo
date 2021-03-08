@@ -5,7 +5,7 @@ import com.wenyao.leetcode.ListNode;
 /**
  * 返回链表中倒数第k个节点开始的链表
  */
-public class LeetCode22 {
+public class SwordToOffer22 {
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);

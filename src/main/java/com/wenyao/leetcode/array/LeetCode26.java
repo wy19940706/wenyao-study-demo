@@ -8,7 +8,7 @@ public class LeetCode26 {
         System.out.println(removeDuplicates(new int[] {2, 1, 1, 1, 3, 3, 4, 5}));
     }
 
-    public static int removeDuplicates(int[] nums) {
+    private static int removeDuplicates(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }

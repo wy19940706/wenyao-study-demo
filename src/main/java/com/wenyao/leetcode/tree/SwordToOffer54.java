@@ -7,7 +7,7 @@ import com.wenyao.leetcode.TreeNode;
 /**
  * 二叉搜索树的第k大节点
  */
-public class LeetCode54 {
+public class SwordToOffer54 {
 
     public int kthLargest(TreeNode root, int k) {
         int count = 1;

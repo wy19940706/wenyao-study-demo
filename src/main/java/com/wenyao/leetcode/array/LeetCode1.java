@@ -3,7 +3,6 @@ package com.wenyao.leetcode.array;
 import java.util.Arrays;
 import java.util.Map;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 /**
@@ -19,15 +18,16 @@ public class LeetCode1 {
         System.out.println(Arrays.toString(result));
     }
 
-    public static int[] getIndexOfTwoNum(int[] nums, int target) {
-        Map<Integer, Integer> integerIntegerMap = Maps.newHashMap();
-        for (int i = 0; i < nums.length; i++) {
-            Integer index = integerIntegerMap.get(target - nums[i]);
-            if (index != null) {
-                return new int[] {i, index};
+    private static int[] getIndexOfTwoNum(int[] intArray, int target) {
+        Map<Integer, Integer> map = Maps.newHashMap();
+        for (int i = 0; i < intArray.length; i++) {
+            Integer integer = map.get(target - intArray[i]);
+            if (integer != null) {
+                return new int[] {integer, i};
             }
-            integerIntegerMap.put(nums[i], i);
+            map.put(intArray[i], i);
         }
         return new int[] {0, 0};
     }
+
 }

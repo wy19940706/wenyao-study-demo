@@ -5,7 +5,7 @@ import com.wenyao.leetcode.TreeNode;
 /**
  * 找二叉搜索树的公共祖先
  */
-public class LeetCode68Other {
+public class LeetCode235 {
 
     public static void main(String[] args) {}
 

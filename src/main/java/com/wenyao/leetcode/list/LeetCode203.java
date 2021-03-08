@@ -17,14 +17,14 @@ public class LeetCode203 {
         System.out.println(JSON.toJSONString(result2));
     }
 
-    public static ListNode removeElements(ListNode head, int val) {
+    private static ListNode removeElements(ListNode head, int target) {
         // 用哑节点可以不用考虑头结点的特殊情况
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode pre = dummy;
         ListNode current = head;
         while (current != null) {
-            if (current.value == val) {
+            if (current.value == target) {
                 pre.next = current.next;
             } else {
                 pre = pre.next;
@@ -33,4 +33,5 @@ public class LeetCode203 {
         }
         return dummy.next;
     }
+
 }

@@ -34,7 +34,7 @@ public class LeetCode61 {
         }
         oldTail.next = head;
         ListNode newTail = head;
-        for (int i = 1; i < n - k % n - 1; i++) {
+        for (int i = 0; i < n - k % n - 1; i++) {
             newTail = newTail.next;
         }
         ListNode newHead = newTail.next;

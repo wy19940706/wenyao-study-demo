@@ -7,7 +7,7 @@ import com.alibaba.dubbo.common.utils.Stack;
  */
 public class LeetCode151 {
     public static void main(String[] args) {
-        String str = "a good   example";
+        String str = "a good example";
         System.out.println(reverseWords(str));
     }
 
