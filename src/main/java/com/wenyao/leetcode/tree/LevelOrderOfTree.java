@@ -21,7 +21,7 @@ public class LevelOrderOfTree {
         System.out.println(JSON.toJSONString(levelOrderOfTree(root)));
     }
 
-    // 迭代做法
+    // 迭代做法 用队列
     // 时间复杂度：O(N)，因为每个节点恰好会被运算一次。
     // 空间复杂度：O(N)，保存输出结果的数组包含 N 个节点的值。
     public static List<List<Integer>> levelOrderOfTree(TreeNode root) {

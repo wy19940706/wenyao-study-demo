@@ -41,6 +41,8 @@ public class PreOrderOfTree {
         return list;
     }
 
+
+
     public static List<Integer> item = Lists.newArrayList();
 
     public static List<Integer> preOrderTraversal(TreeNode root) {

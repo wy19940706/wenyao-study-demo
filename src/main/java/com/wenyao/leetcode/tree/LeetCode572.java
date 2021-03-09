@@ -14,12 +14,7 @@ public class LeetCode572 {
         if (t == null) {
             return true;
         }
-        if (s.data != t.data) {
-            return isSubtree(s.left, t) || isSubtree(s.right, t);
-        } else {
-            return isSameTree(s, t) || isSubtree(s.left, t) || isSubtree(s.right, t);
-        }
-
+        return isSameTree(s, t) || isSubtree(s.left, t) || isSubtree(s.right, t);
     }
 
     private boolean isSameTree(TreeNode root1, TreeNode root2) {

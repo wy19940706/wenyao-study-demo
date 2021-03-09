@@ -1,8 +1,5 @@
 package com.wenyao.leetcode.tree;
 
-import java.util.List;
-
-import com.google.common.collect.Lists;
 import com.wenyao.leetcode.TreeNode;
 
 /**
@@ -15,26 +12,24 @@ public class LeetCode98 {
 
     }
 
-    private static boolean isValidBST(TreeNode root) {
+    private static boolean validBST(TreeNode root) {
+        return validBST(root, null, null);
+    }
+
+    private static boolean validBST(TreeNode root, TreeNode min, TreeNode max) {
         if (root == null) {
             return true;
         }
-        List<TreeNode> list = Lists.newArrayList();
-        inOrder(root, list);
-        for (int i = 0; i < list.size() - 1; i++) {
-            if (list.get(i).data >= list.get(i + 1).data) {
-                return false;
-            }
-        }
-        return true;
-    }
 
-    private static void inOrder(TreeNode root, List<TreeNode> list) {
-        if (root != null) {
-            inOrder(root.left, list);
-            list.add(root);
-            inOrder(root.right, list);
+        if (min != null && root.data <= min.data) {
+            return false;
         }
+
+        if (max != null && root.data >= max.data) {
+            return false;
+        }
+
+        return validBST(root.left, min, root) && validBST(root.right, root, max);
     }
 
 }

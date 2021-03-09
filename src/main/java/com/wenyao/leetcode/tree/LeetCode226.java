@@ -13,7 +13,7 @@ public class LeetCode226 {
 
     public TreeNode invertTree(TreeNode root) {
         if (root == null) {
-            return root;
+            return null;
         }
         root.left = invertTree(root.right);
         root.right = invertTree(root.left);

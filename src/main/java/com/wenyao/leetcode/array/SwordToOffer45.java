@@ -9,7 +9,7 @@ import com.alibaba.fastjson.JSON;
  * @Author: wy
  * @CreateDate: 2019/3/24 0:54
  */
-public class SwordToOffer47 {
+public class SwordToOffer45 {
     public static void main(String[] args) {
         int[] array = new int[] {3, 32, 321};
         System.out.println(JSON.toJSONString(printMinNum(array)));
