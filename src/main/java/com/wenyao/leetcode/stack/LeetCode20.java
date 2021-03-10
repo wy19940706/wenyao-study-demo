@@ -4,7 +4,7 @@ import java.util.Stack;
 
 /**
  * 
- * @Description: 模式匹配
+ * @Description: 有效的括号
  * 
  * @Author: wy
  * 

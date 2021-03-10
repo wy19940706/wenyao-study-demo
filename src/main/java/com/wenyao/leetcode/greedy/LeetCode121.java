@@ -1,7 +1,7 @@
 package com.wenyao.leetcode.greedy;
 
 /**
- * 买卖股票的最佳时机
+ * 买卖股票的最佳时机（只买卖一次）
  */
 public class LeetCode121 {
 
