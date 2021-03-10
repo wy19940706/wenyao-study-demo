@@ -1,4 +1,4 @@
-package com.wenyao.tree;
+package com.wenyao.leetcode.tree;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
