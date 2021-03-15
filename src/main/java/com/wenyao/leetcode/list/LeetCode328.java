@@ -13,7 +13,9 @@ public class LeetCode328 {
         if (head == null) {
             return null;
         }
+        // 偶数
         ListNode evenHead = head.next;
+        // 奇数
         ListNode odd = head, even = evenHead;
         while (even != null && even.next != null) {
             odd.next = even.next;

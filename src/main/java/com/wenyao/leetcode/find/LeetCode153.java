@@ -13,17 +13,18 @@ public class LeetCode153 {
 
     public static int minArray(int[] numbers) {
         int low = 0, high = numbers.length - 1;
-        while (low < high) {
-            int mid = (low + high) / 2;
-            if (numbers[mid] > numbers[high]) {
+        while (low <= high) {
+            if (numbers[low] <= numbers[high]) {
+                return numbers[low];
+            }
+            int mid = low + (high - low) / 2;
+            if (numbers[low] <= numbers[mid]) {// 说明最小值在右边
                 low = mid + 1;
-            } else if (numbers[mid] < numbers[high]) {
-                high = mid;
             } else {
-                high--;
+                high = mid;
             }
         }
-        return numbers[low];
+        return -1;
     }
 
 }
